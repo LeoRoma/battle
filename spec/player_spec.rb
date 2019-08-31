@@ -1,11 +1,35 @@
 require './lib/player.rb'
 
 describe Player do
-let(:player_1) { Player.new("John") }
-let(:player_2) { Player.new(name) }
+let(:john) { Player.new("John") }
+let(:tom) { Player.new("Tom") }
 
-  it 'gives the possibility to enter a name' do
+  describe '#name' do
+    it 'enters player 1 name' do
+      expect(john.name).to eq "John"
+    end
 
-    expect(player_1.name).to eq "John"
+    it 'enters player 2 name' do
+      expect(tom.name).to eq "Tom"
+    end
   end
+
+  describe '#hit_points' do
+    it 'has some hp by default' do
+      expect(tom.hit_points).to eq described_class::DEFAULT_HIT_POINTS
+    end
+  end
+
+  describe '#attack' do
+    it 'attacks opponent player' do
+      expect(tom).to receive(:receive_damage)
+      john.attack(tom)
+    end
+  end
+
+  describe '#receive_damage' do
+    it 'reduces the player hit points' do
+       expect { john.receive_damage }.to change { john.hit_points }.by(-10)
+     end
+   end
 end
