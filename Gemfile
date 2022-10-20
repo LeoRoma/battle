@@ -13,4 +13,4 @@ gem 'rspec'
 gem 'sinatra'
 gem 'capybara'
 
-gem "nokogiri", "~> 1.10"
+gem "nokogiri", "~> 1.13"
